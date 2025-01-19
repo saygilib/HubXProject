@@ -1,20 +1,19 @@
-version: '3.8'
-
 services:
   app:
     build:
       context: .
       dockerfile: Dockerfile
+      platforms:
+        - linux/amd64
+        - linux/arm64
     ports:
       - "5000:5000"
     environment:
-      - MONGO_URI=mongodb://mongo:27017/moviedb
+      MONGO_URI: mongodb://mongo:27017/moviedb 
+      REDIS_URL: redis://redis:6379
     depends_on:
       - mongo
-    volumes:
-      - .:/app
-      - /app/node_modules
-
+    
   mongo:
     image: mongo:6.0
     container_name: my-mongodb
@@ -22,6 +21,16 @@ services:
       - "27018:27017"
     volumes:
       - mongo-data:/data/db
+    
+  redis:
+    image: redis:6.0
+    container_name: my-redis
+    command: ["redis-server", "--appendonly", "yes"]
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
 
 volumes:
   mongo-data:
+  redis-data:

@@ -6,10 +6,11 @@ export interface IMovie extends Document {
   releaseDate: Date;
   genre: string;
   rating: number;
-  imdbId: string;
-  director: mongoose.Types.ObjectId;
+  imdbId: string; 
+  director: mongoose.Types.ObjectId; // it will be a reference to the Director model, because in getMovies service i am populating the director field
 }
 
+// Movie schema definition 
 const MovieSchema: Schema = new Schema({
   title: { type: String, required: true },
   description: { type: String, required: true },

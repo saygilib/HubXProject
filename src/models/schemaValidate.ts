@@ -1,5 +1,6 @@
 import Joi from "joi";
 
+// Joi schema for validating the request body of the movie endpoint
 export const movieSchemaValidate = Joi.object({
   title: Joi.string().required(),
   genre: Joi.string().required(),
@@ -10,6 +11,7 @@ export const movieSchemaValidate = Joi.object({
   director: Joi.string().required(),
 });
 
+// Joi schema for validating the request body of the director endpoint
 export const directorSchemaValidate = Joi.object({
   firstName: Joi.string().required(),
   secondName: Joi.string().required(),

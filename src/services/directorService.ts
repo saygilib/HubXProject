@@ -1,6 +1,7 @@
 import Director, { IDirector } from "../models/Director";
 import { getErrorMessage } from "../utils/helper";
 
+// service for creating a new director
 export const createDirector = async (data: IDirector) => {
   try {
     const newDirector = await Director.create(data);
@@ -10,6 +11,8 @@ export const createDirector = async (data: IDirector) => {
   }
 };
 
+// service for getting all directors , made this service for development purposes
+// also it makes easier to test the create movie service, because create movie service requires a director id
 export const getDirectors = async () => {
   try {
     return await Director.find();
@@ -18,6 +21,7 @@ export const getDirectors = async () => {
   }
 };
 
+// service for deleting a director by id
 export const deleteDirector = async (id: string) => {
   try {
     const deletedDirector = await Director.findByIdAndDelete(id);

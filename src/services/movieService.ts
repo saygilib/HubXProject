@@ -1,6 +1,7 @@
 import Movie, { IMovie } from "../models/Movie";
 import { getErrorMessage } from "../utils/helper";
 
+// service for creating a new movie
 export const createMovie = async (data: IMovie) => {
   try {
     const newMovie = await Movie.create(data);
@@ -10,6 +11,7 @@ export const createMovie = async (data: IMovie) => {
   }
 };
 
+// service for getting all movies with their directors
 export const getMovies = async () => {
   try {
     return await Movie.find().populate("director");
@@ -18,6 +20,7 @@ export const getMovies = async () => {
   }
 };
 
+// service for updating a movie by id
 export const updateMovie = async (id: string, data: Partial<IMovie>) => {
   try {
     const updatedMovie = await Movie.findByIdAndUpdate(id, data, { new: true });
@@ -30,6 +33,7 @@ export const updateMovie = async (id: string, data: Partial<IMovie>) => {
   }
 };
 
+// service for deleting a movie by id
 export const deleteMovie = async (id: string) => {
   try {
     const deletedMovie = await Movie.findByIdAndDelete(id);
